@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a.active {
+  background-color: #0f9ccf;
+  color: white;
+}
+
+body.dark-mode a.active {
+  background-color: #3b3b3b;
+  color: #fff;
+}
+
+svg.star-svg {
+  display: inline;
+}

@@ -1,0 +1,18 @@
+.dark-mode {
+  background-color: rgb(24, 24, 24);
+  color: white;
+}
+
+body.dark-mode .btn {
+  background-color: #0c7c9f;
+  color: #fff; 
+}
+
+
+body.dark-mode .btn:hover {
+  background-color: #1d1d1d; 
+}
+
+.btn:hover {
+  background-color: #0c7c9f; 
+}
