@@ -2,10 +2,14 @@ import React, { useContext, useState } from "react";
 import NavBar from "./NavBar";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
+import GoggleLogin from "../Shared/GoggleLogin";
+import "../Feature/style.css";
+import WelcomeBanner from "../Shared/WelcomeBanner";
+import Logo from "../Shared/Logo";
 
 const Login = () => {
   const { userLogin, signInWithGoogle, updateEmail } = useContext(AuthContext);
@@ -38,40 +42,31 @@ const Login = () => {
       });
   };
 
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        // console.log(result.user);
-        toast.success("Login Successfully");
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((err) => {
-        // console.log(err);
-        setError("login", { type: "manual", message: err.message }); //
-      });
-  };
-
   return (
     <div>
-      <div className="w-full lg:w-11/12 mx-auto">
-        <NavBar></NavBar>
-      </div>
-      <div>
-        <div
-          className="w-full flex justify-center items-center py-14"
-          style={{
-            minHeight: "calc(100vh - 80px)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            overflow: "hidden",
-          }}
-        >
-          <div className="card w-full  md:max-w-[380px] lg:max-w-[440px] shrink-0 p-10 bg-gradient-to-r from-orange-100 via-gray-100 to-blue-300 text-gray-800">
-            <h2 className="text-2xl font-semibold text-center">
-              Login Your Account
-            </h2>
-            <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="w-full flex justify-center items-center">
+          <div className="card w-full md:max-w-[380px] lg:max-w-[440px] p-10 mt-6">
+            <div className="mb-10">
+              <Logo></Logo>
+            </div>
+            <div>
+              <Link
+                to="/"
+                className="flex gap-2 text-center items-center font-semibold mb-4"
+              >
+                <FaArrowLeft />
+                <h3>Home</h3>
+              </Link>
+            </div>
+            <h2 className="text-2xl font-bold text-left">Log In</h2>
+            <p className="text-left font-semibold mb-2">
+              Do not have a Account ?
+              <Link to="/registers" className="text-[#023E8A] pl-1">
+                Register
+              </Link>
+            </p>
+            <form onSubmit={handleSubmit(onSubmit)} className="pb-3">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -129,34 +124,16 @@ const Login = () => {
               )}
 
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary wonder-button">Login</button>
               </div>
             </form>
-            <div className="px-8">
-              <div className="flex items-center justify-center my-2">
-                <div className="border-t border-gray-300 flex-grow"></div>
-                <span className="px-4 text-gray-600">Or Sign In With</span>
-                <div className="border-t border-gray-300 flex-grow"></div>
-              </div>
-
-              <div className="flex items-center justify-center pb-1">
-                <button
-                  onClick={handleGoogleSignIn}
-                  className="flex text-center items-center btn text-xl border-gray-400 rounded-lg"
-                >
-                  <FcGoogle />
-                  Google
-                </button>
-              </div>
+            <div>
+              <GoggleLogin></GoggleLogin>
             </div>
-
-            <p className="text-center font-semibold">
-              Do not have an account?
-              <Link to="/registers" className="text-red-600 pl-1">
-                Register
-              </Link>
-            </p>
           </div>
+        </div>
+        <div className="col-span-2">
+          <WelcomeBanner></WelcomeBanner>
         </div>
       </div>
     </div>

@@ -85,10 +85,10 @@ const AddMovie = () => {
   };
   return (
     <div>
-      <div className="w-full lg:w-11/12 mx-auto">
+      <div>
         <NavBar></NavBar>
       </div>
-      <div className="mt-8">
+      <div className="pt-20">
         <div className="p-8 w-full lg:w-[700px] mx-auto bg-base-200 rounded-lg shadow-lg">
           <h1 className="text-2xl font-bold mb-6">Add a Movie</h1>
           <form onSubmit={handleAddMovie}>

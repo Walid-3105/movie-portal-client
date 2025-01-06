@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-import { CgProfile } from "react-icons/cg";
 import toast from "react-hot-toast";
-import { MdOutlineSlowMotionVideo } from "react-icons/md";
 import "./navBar.css";
+import "../Feature/style.css";
+import Logo from "../Shared/Logo";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -29,37 +29,32 @@ const NavBar = () => {
   };
 
   return (
-    <div className="navbar">
+    <div className="navbar flex fixed z-10 mx-auto w-full px-8 lg:px-14">
       {/* Navbar Start */}
-      <div className="navbar-start">
-        <h3 className="text-sm lg:text-xl flex text-center items-center font-bold">
-          M
-          <span className="text-[#1230AE]">
-            <MdOutlineSlowMotionVideo />
-          </span>
-          VIE HIVE
-        </h3>
-      </div>
+      <Logo></Logo>
 
       {/* Navbar Center */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-2">
-          <NavLink to="/" className="btn btn-outline hover:bg-sky-900">
+        <ul className="menu menu-horizontal px-1 gap-3">
+          <NavLink to="/" className=" text-lg font-medium">
             Home
           </NavLink>
-          <NavLink to="/allmovie" className="btn btn-outline hover:bg-sky-900">
+          <NavLink to="/allmovie" className=" text-lg font-medium">
             All Movies
           </NavLink>
-          <NavLink
-            to="/myFavorite"
-            className="btn btn-outline hover:bg-sky-900"
-          >
-            My Favorites
-          </NavLink>
-          <NavLink to="/addMovie" className="btn btn-outline hover:bg-sky-900">
-            Add Movie
-          </NavLink>
-          <NavLink to="/contactUs" className="btn btn-outline hover:bg-sky-900">
+          {user && user?.email ? (
+            <div>
+              <NavLink to="/myFavorite" className=" text-lg font-medium">
+                My Favorites
+              </NavLink>
+              <NavLink to="/addMovie" className=" text-lg font-medium ml-3">
+                Add Movie
+              </NavLink>
+            </div>
+          ) : (
+            ""
+          )}
+          <NavLink to="/contactUs" className=" text-lg font-medium">
             Contact Us
           </NavLink>
         </ul>
@@ -70,19 +65,19 @@ const NavBar = () => {
         {/* User Profile and Logout */}
         {user && user?.email ? (
           <div
-            className="flex items-center gap-2 relative"
+            className="flex items-center gap-2 relative "
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
           >
             {/* Hover Effects */}
             {isHovering && (
-              <div className="absolute  p-2 w-36 rounded-md shadow-md top-10 left-0 z-10">
+              <div className="absolute  p-2 w-36 rounded-md shadow-md top-10 left-0 z-10 bg-slate-400">
                 <p className="text-sm mb-1">
                   {displayName || "Anonymous User"}
                 </p>
                 <button
                   onClick={handleLogout}
-                  className="btn btn-sm bg-[#0f9ccf] text-white hover:bg-sky-900 rounded-xl"
+                  className="btn btn-sm wonder-button text-white  rounded-xl"
                 >
                   Log-Out
                 </button>
@@ -98,16 +93,13 @@ const NavBar = () => {
           </div>
         ) : (
           // Login/Register Links
-          <div className="flex items-center gap-2">
-            <NavLink
-              to="/login"
-              className="btn btn-sm lg:btn-md bg-[#0f9ccf] text-white"
-            >
+          <div className="items-center gap-2 lg:flex hidden">
+            <NavLink to="/login" className=" btn-sm  wonder-button text-white">
               Login
             </NavLink>
             <NavLink
               to="/registers"
-              className="btn btn-sm lg:btn-md bg-[#0f9ccf] text-white"
+              className=" btn-sm rounded-none  py-1 wonder-button text-white"
             >
               Register
             </NavLink>
@@ -123,7 +115,7 @@ const NavBar = () => {
           />
           {/* Sun Icon */}
           <svg
-            className="swap-off h-10 w-10 fill-current"
+            className="swap-off h-8 w-8 fill-current"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
@@ -131,7 +123,7 @@ const NavBar = () => {
           </svg>
           {/* Moon Icon */}
           <svg
-            className="swap-on h-10 w-10 fill-current"
+            className="swap-on h-8 w-8 fill-current"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
@@ -157,18 +149,18 @@ const NavBar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content  rounded-box z-[1] mt-3 w-52 p-2 right-0 bg-gray-400 "
+            className="menu menu-sm dropdown-content  rounded-box z-[1] mt-3 w-52 p-2 right-0 dropBar"
           >
-            <NavLink to="/" className="text-lg hover:text-blue-600 ">
+            <NavLink to="/" className="text-lg ">
               Home
             </NavLink>
-            <NavLink to="/allMovie" className="text-lg hover:text-blue-600">
+            <NavLink to="/allMovie" className="text-lg">
               All Movie
             </NavLink>
-            <NavLink to="/myFavorite" className="text-lg hover:text-blue-600">
+            <NavLink to="/myFavorite" className="text-lg">
               My Favorites
             </NavLink>
-            <NavLink to="/addMovie" className="text-lg hover:text-blue-600">
+            <NavLink to="/addMovie" className="text-lg">
               Add Movie
             </NavLink>
             <div className="mt-2">
@@ -185,7 +177,7 @@ const NavBar = () => {
                         );
                       });
                   }}
-                  className="btn btn-sm lg:btn-md bg-[#0f9ccf] text-white hover:bg-sky-900 rounded-xl"
+                  className="btn btn-sm lg:btn-md bg-[#0f9ccf] text-white  rounded-xl"
                 >
                   Log-Out
                 </NavLink>
@@ -193,13 +185,13 @@ const NavBar = () => {
                 <div>
                   <NavLink
                     to="/login"
-                    className="btn btn-sm lg:btn-md bg-[#0f9ccf] text-white"
+                    className="btn btn-sm wonder-button text-white"
                   >
                     Login
                   </NavLink>
                   <NavLink
                     to="/register"
-                    className="btn btn-sm lg:btn-md bg-[#0f9ccf] text-white ml-1"
+                    className="btn btn-sm wonder-button text-white ml-1"
                   >
                     Register
                   </NavLink>

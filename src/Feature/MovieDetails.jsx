@@ -1,17 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Link,
-  Navigate,
-  NavLink,
-  useLoaderData,
-  useNavigate,
-} from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import NavBar from "../NavBarContainer/NavBar";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import Footer from "../Components/Footer";
-import { FaArrowLeft } from "react-icons/fa";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "../Feature/style.css";
 
 const MovieDetails = () => {
   const [showSkeleton, setShowSkeleton] = useState(true);
@@ -64,17 +58,16 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <div className="w-full lg:w-11/12 mx-auto">
+      <div className="">
         <NavBar></NavBar>
       </div>
-      <div className="w-11/12 mx-auto">
-        {" "}
+      <div className="w-11/12 mx-auto pt-24">
         {showSkeleton ? (
           <SkeletonTheme height="30px" highlightColor="#0f9ccf">
             <Skeleton count={7}></Skeleton>
           </SkeletonTheme>
         ) : (
-          <div className="flex items-center justify-center my-10">
+          <div className="flex items-center justify-center ">
             <div className="card w-[800px] shadow-xl shadow-slate-500">
               <figure>
                 <img
@@ -119,17 +112,20 @@ const MovieDetails = () => {
                 <div className="card-actions ">
                   <button
                     onClick={() => handleAddFavorite(_id)}
-                    className="btn btn-primary"
+                    className="btn-sm wonder-button"
                   >
                     Add to Favorite
                   </button>
 
-                  <Link to={`/updateMovie/${_id}`} className="btn btn-primary">
+                  <Link
+                    to={`/updateMovie/${_id}`}
+                    className="btn-sm wonder-button"
+                  >
                     Update Movie
                   </Link>
                   <button
                     onClick={() => handleDeleteMovie(_id)}
-                    className="btn btn-primary"
+                    className="btn-sm wonder-button"
                   >
                     Delete Movie
                   </button>
@@ -140,11 +136,6 @@ const MovieDetails = () => {
         )}
       </div>
       <div>
-        <div className="flex justify-center">
-          <NavLink to="/allmovie" className="btn btn-primary">
-            <FaArrowLeft></FaArrowLeft> See All Movies
-          </NavLink>
-        </div>
         <Footer></Footer>
       </div>
     </div>

@@ -2,17 +2,34 @@
   background-color: rgb(24, 24, 24);
   color: white;
 }
+.navbar {
+  background-color: white;
+}
 
+.dark-mode .navbar {
+  background-color: rgb(24, 24, 24);
+  backdrop-filter: blur(10px);
+}
 body.dark-mode .btn {
   background-color: #0c7c9f;
-  color: #fff; 
+  color: #fff;
 }
-
 
 body.dark-mode .btn:hover {
-  background-color: #1d1d1d; 
+  background-color: #1d1d1d;
 }
 
-.btn:hover {
-  background-color: #0c7c9f; 
+/* .btn:hover {
+  background-color: #0c7c9f;
+} */
+/* light mode */
+body:not(.dark-mode) .dropBar {
+  background: linear-gradient(145deg, #b7b6cf, #ffffff, #b7b6cf, #ffffff);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark Mode */
+body.dark-mode .dropBar {
+  background: linear-gradient(145deg, #1e293b, #334155);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
 }

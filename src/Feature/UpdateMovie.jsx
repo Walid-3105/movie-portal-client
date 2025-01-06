@@ -4,6 +4,7 @@ import { Rating } from "react-simple-star-rating";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../Components/Footer";
+import "../Feature/style.css";
 
 const UpdateMovie = () => {
   const [rating, setRating] = useState(null);
@@ -95,8 +96,8 @@ const UpdateMovie = () => {
       <div>
         <NavBar></NavBar>
       </div>
-      <div>
-        <div className="mt-8 p-8 w-full lg:w-[700px] mx-auto bg-base-200 rounded-lg shadow-lg">
+      <div className="pt-20">
+        <div className="p-8 w-full lg:w-[700px] mx-auto bg-base-200 rounded-lg shadow-lg">
           <h1 className="text-2xl font-bold mb-6">Update Movie</h1>
           <form onSubmit={handleUpdateMovie}>
             {/* Movie Poster */}
@@ -213,7 +214,7 @@ const UpdateMovie = () => {
 
             {/* Submit Button */}
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Update Movie</button>
+              <button className="btn wonder-button">Update Movie</button>
             </div>
           </form>
         </div>

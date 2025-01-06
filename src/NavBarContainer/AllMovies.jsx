@@ -11,10 +11,18 @@ const AllMovies = () => {
   const movieList = Array.isArray(movies) ? movies : [];
   const [search, setSearch] = useState("");
   const [showSkeleton, setShowSkeleton] = useState(true);
+  const [sortOrder, setSortOrder] = useState("default");
 
-  const filteredMovies = movieList.filter((movie) =>
-    movie.title.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredMovies = movieList
+    .filter((movie) => movie.title.toLowerCase().includes(search.toLowerCase()))
+    .sort((a, b) => {
+      if (sortOrder === "ascending") {
+        return a.rating - b.rating;
+      } else if (sortOrder === "descending") {
+        return b.rating - a.rating;
+      }
+      return 0;
+    });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -26,10 +34,10 @@ const AllMovies = () => {
 
   return (
     <div>
-      <div className="w-full lg:w-11/12 mx-auto">
+      <div>
         <NavBar></NavBar>
       </div>
-      <div className="w-11/12 mx-auto">
+      <div className="w-11/12 mx-auto pt-20">
         {showSkeleton ? (
           <SkeletonTheme height="30px" highlightColor="#0f9ccf" duration={3}>
             <Skeleton count={7}></Skeleton>
@@ -50,13 +58,23 @@ const AllMovies = () => {
                     placeholder="Search by title..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="w-60 text-black border shadow-sm border-slate-500 rounded-md p-2"
+                    className="w-40 text-black border shadow-sm border-slate-500 rounded-md p-2"
                   />
+                  {/* Dropdown for Sorting */}
+                  <select
+                    className="w-30 ml-2 text-black border shadow-sm border-slate-500 rounded-md p-2"
+                    value={sortOrder}
+                    onChange={(e) => setSortOrder(e.target.value)}
+                  >
+                    <option value="default">Default</option>
+                    <option value="ascending">Ascending</option>
+                    <option value="descending">Descending</option>
+                  </select>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {filteredMovies.length > 0 ? (
                 filteredMovies.map((movie, index) => (
                   <Movie key={index} movie={movie}></Movie>

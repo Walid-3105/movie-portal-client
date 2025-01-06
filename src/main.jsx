@@ -76,11 +76,7 @@ const router = createBrowserRouter([
 
   {
     path: "/movie/:id",
-    element: (
-      <PrivateRoutes>
-        <MovieDetails></MovieDetails>
-      </PrivateRoutes>
-    ),
+    element: <MovieDetails></MovieDetails>,
     loader: ({ params }) =>
       fetch(`https://movie-portal-server-azure.vercel.app/movie/${params.id}`),
   },

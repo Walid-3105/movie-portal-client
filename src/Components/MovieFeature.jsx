@@ -5,6 +5,7 @@ import Faq from "./Faq";
 import SubscriptionPlans from "./SubscriptionPlans";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import UpcomingMovies from "./UpcomingMovies";
 
 const MovieFeature = () => {
   const [showSkeleton, setShowSkeleton] = useState(true);
@@ -31,11 +32,11 @@ const MovieFeature = () => {
   }
 
   return (
-    <div className="mb-20">
+    <div className="mb-20 mt-20">
       <h3 className="text-xl lg:text-3xl  font-bold mb-5 mt-40 lg:mt-0 w-11/12 text-center mx-auto lg:text-left lg:mx-0">
         Uncover the Best of the Silver Screen
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {sortedMovies.map((movie, index) => (
           <Movie key={index} movie={movie} />
         ))}
@@ -45,6 +46,9 @@ const MovieFeature = () => {
       </div>
       <div>
         <Faq></Faq>
+      </div>
+      <div>
+        <UpcomingMovies></UpcomingMovies>
       </div>
     </div>
   );

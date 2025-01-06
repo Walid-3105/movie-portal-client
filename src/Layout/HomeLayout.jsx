@@ -7,7 +7,7 @@ import Banner from "../Components/Banner";
 const HomeLayout = () => {
   return (
     <div>
-      <div className="w-full lg:w-11/12 mx-auto">
+      <div>
         <NavBar></NavBar>
       </div>
       <div className="text-center pb-20 lg:pb-0">

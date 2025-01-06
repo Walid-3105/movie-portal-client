@@ -1,0 +1,61 @@
+/* Button Base Style */
+.wonder-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  color: white;
+}
+
+/* Light Mode */
+body:not(.dark-mode) .wonder-button {
+  background: linear-gradient(145deg, #5553d1, #1e1596, #4947bd, #1e1596);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark Mode */
+body.dark-mode .wonder-button {
+  background: linear-gradient(145deg, #1e293b, #334155);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Hover Effects */
+.wonder-button:hover {
+  background: linear-gradient(145deg, #2563eb, #3b82f6);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Active (Press) Effects */
+.wonder-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3);
+}
+
+/* Glowing Outline */
+.wonder-button::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  background: linear-gradient(
+    145deg,
+    rgba(59, 130, 246, 0.5),
+    rgba(16, 185, 129, 0.5)
+  );
+  border-radius: 10px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.wonder-button:hover::before {
+  opacity: 1;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import "../Feature/style.css";
 const SubscriptionPlans = () => {
   const plans = [
     {
@@ -47,14 +47,17 @@ const SubscriptionPlans = () => {
         Choose a plan that suits you and unlock exclusive content and perks!
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {plans.map((plan) => (
-          <div key={plan.id} className="plan-card p-6 rounded-lg shadow-lg">
+          <div
+            key={plan.id}
+            className="plan-card flex flex-col p-6 rounded-lg shadow-lg"
+          >
             <h3 className="text-xl font-semibold text-center">{plan.name}</h3>
             <p className="text-center text-lg font-bold text-blue-500">
               {plan.price}
             </p>
-            <ul className="mt-4">
+            <ul className="mt-4 flex-grow">
               {plan.features.map((feature, index) => (
                 <li key={index} className="flex items-center gap-2">
                   <svg
@@ -71,7 +74,7 @@ const SubscriptionPlans = () => {
               ))}
             </ul>
             <div className="mt-6 text-center">
-              <NavLink className="btn  w-full py-2 px-4 text-white bg-[#0f9ccf] rounded-lg hover:bg-blue-700">
+              <NavLink className="btn wonder-button  w-full py-2 px-4 text-white bg-[#0f9ccf] rounded-lg hover:bg-blue-700">
                 Sign Up Now
               </NavLink>
             </div>

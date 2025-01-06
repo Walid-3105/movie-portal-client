@@ -2,15 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-a.active {
-  background-color: #0f9ccf;
-  color: white;
-}
+/* a.active {
+  color: rgb(25, 25, 141);
+} */
 
-body.dark-mode a.active {
-  background-color: #3b3b3b;
-  color: #fff;
-}
+/* body.dark-mode a.active {
+  color: rgb(59, 59, 226);
+} */
 
 svg.star-svg {
   display: inline;

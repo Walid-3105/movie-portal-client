@@ -1,23 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
-import MyFavorites from "../NavBarContainer/MyFavorites";
 import NavBar from "../NavBarContainer/NavBar";
 import { AuthContext } from "../Provider/AuthProvider";
 import Footer from "./Footer";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { MdDeleteForever } from "react-icons/md";
 
 const FavoriteFeature = () => {
-  const [favoriteMovies, setFavoriteMovies] = useState();
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
   const { user } = useContext(AuthContext);
-  const [showSkeleton, setShowSkeleton] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSkeleton(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     fetch(
@@ -27,48 +16,83 @@ const FavoriteFeature = () => {
       .then((data) => {
         setFavoriteMovies(data);
       });
-  }, []);
+  }, [user.email]);
 
   return (
     <div>
-      <div className="w-full lg:w-11/12 mx-auto">
-        <NavBar></NavBar>
+      <div>
+        <NavBar />
       </div>
-      <div className="w-11/12 mx-auto">
-        {showSkeleton ? (
-          <SkeletonTheme height="30px" highlightColor="#0f9ccf" duration={3}>
-            <Skeleton count={7}></Skeleton>
-          </SkeletonTheme>
+      <div className="w-11/12 mx-auto pt-20">
+        <h3 className="text-xl font-bold mb-6 ">
+          Manage and explore your personal movie favorites collection
+        </h3>
+        {favoriteMovies.length === 0 ? (
+          <div className="text-center py-20">
+            <h2 className="text-2xl font-bold">No Favorite Movies Added</h2>
+            <p className="text-gray-500">
+              Explore and add your favorite movies!
+            </p>
+          </div>
         ) : (
-          <div>
-            <h3 className="text-sm lg:text-2xl font-bold mt-6">
-              Manage and explore your personal movie favorites collection
-            </h3>
-            {favoriteMovies && favoriteMovies.length === 0 ? (
-              <div className="text-center py-20 h-screen">
-                <h2 className="text-2xl font-bold">No Favorite Movies Added</h2>
-                <p className="text-gray-500">
-                  Explore and add your favorite movies!
-                </p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5">
-                {favoriteMovies &&
-                  favoriteMovies.map((movie, index) => (
-                    <MyFavorites
-                      key={index}
-                      movie={movie}
-                      favoriteMovies={favoriteMovies}
-                      setFavoriteMovies={setFavoriteMovies}
-                    ></MyFavorites>
-                  ))}
-              </div>
-            )}
+          <div className="overflow-x-auto">
+            <table className="table">
+              {/* head */}
+              <thead className="border text-gray-400">
+                <tr>
+                  <th></th>
+                  <th>Movie</th>
+                  <th>AddedBy</th>
+                  <th>Release Year</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody className="border">
+                {favoriteMovies.map((movie, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle h-12 w-12">
+                            <img
+                              src={movie.image}
+                              alt="Avatar Tailwind CSS Component"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="font-bold">{movie.title}</div>
+                          <div className="font-semibold">{movie.genre}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>{movie.addedBy.name}</td>
+
+                    <td>{movie.year}</td>
+                    <td className="px-4 py-2">
+                      <button
+                        onClick={() => {
+                          // Remove movie logic
+                          const updatedMovies = favoriteMovies.filter(
+                            (m) => m !== movie
+                          );
+                          setFavoriteMovies(updatedMovies);
+                        }}
+                        className="px-3 py-1 rounded hover:text-red-600"
+                      >
+                        <MdDeleteForever size={25}></MdDeleteForever>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
       </div>
       <div className="mt-10">
-        <Footer></Footer>
+        <Footer />
       </div>
     </div>
   );

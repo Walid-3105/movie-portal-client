@@ -5,7 +5,7 @@ import Footer from "./Footer";
 const ContactUs = () => {
   return (
     <div>
-      <div className="w-11/12 mx-auto">
+      <div>
         <NavBar></NavBar>
       </div>
       <div className="w-11/12 mx-auto">

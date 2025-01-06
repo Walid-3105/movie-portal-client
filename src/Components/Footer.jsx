@@ -29,7 +29,7 @@ const navLinks = [
 const Footer = () => {
   return (
     <div className=" px-5 md:px-44 lg:px-52 mt-8 shadow-xl shadow-slate-100 border-t-2">
-      <div className="pt-16 lg:pt-32 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-7 ">
+      <div className="pt-16 lg:pt-24 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-7 ">
         <div className="flex justify-start">
           <div>
             <div className="text-sm font-medium mt-3">
@@ -41,7 +41,7 @@ const Footer = () => {
                 VIE HIVE
               </a>
             </div>
-            @ 2023 Movie Hive.dev
+            @ {new Date().getFullYear()} Movie Hive.dev
           </div>
         </div>
         <div>
@@ -72,8 +72,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <p className="text-sm font-medium text-center  mt-5 pb-6 lg:pt-32 lg:pb-10">
-        © theMovie Hive. 2023, Bangladesh. All rights reserved
+      <p className="text-sm font-medium text-center mt-5 pb-6 lg:pt-4 lg:pb-10">
+        © theMovie Hive. {new Date().getFullYear()}, Bangladesh. All rights
+        reserved
       </p>
     </div>
   );

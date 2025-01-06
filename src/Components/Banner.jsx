@@ -21,14 +21,14 @@ import Skeleton from "react-loading-skeleton";
 const Banner = () => {
   return (
     <div
-      className="w-full h-[450px] relative "
+      className="w-full h-[450px] relative"
       style={{
         // backgroundImage: `url(${background})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 flex flex-col lg:flex-row w-11/12 mx-auto py-16 lg:py-0">
+      <div className="mt-20 absolute inset-0 flex flex-col lg:flex-row w-11/12 mx-auto py-3 lg:py-0">
         <div className="w-full lg:w-1/2 flex items-center justify-start  lg:mr-10 ">
           <div className="text-left">
             <h2 className="text-2xl md:text-3xl lg:text-5xl font-extrabold mb-4 pt-10 lg:pt-0 px-4 lg:px-0 zoom-in">
